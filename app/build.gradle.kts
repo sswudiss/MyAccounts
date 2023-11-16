@@ -58,8 +58,16 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+
+    implementation("androidx.compose.material3:material3:1.1.2")
+    // or Material Design 2
+    implementation ("androidx.compose.material:material")
     implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+//    implementation("androidx.wear.compose:compose-material3:1.1.2")
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.10.0")
     //測試實施
     testImplementation("junit:junit:4.13.2")
     //android測試實現
@@ -69,14 +77,17 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     //偵錯實現
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.4")
+
     //添加全套材質圖標
     implementation("androidx.compose.material:material-icons-extended")
-    //新增視窗大小實用程式
+    
+    //新增視窗大小實用程式,響應式組件需要`WindowSizeClass
     implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
+
     // Optional - Integration with ViewModels
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     // Optional - Integration with LiveData
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
 
 }

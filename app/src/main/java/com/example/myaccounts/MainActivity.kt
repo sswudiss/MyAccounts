@@ -4,59 +4,123 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.MyAccountsTheme
+import com.example.myaccounts.navigation.IncomePayFor
+import com.example.myaccounts.navigation.AppBottomBarM2
+import com.example.myaccounts.navigation.AppBottomBarM3
 import com.example.myaccounts.navigation.AppHost
-import com.example.myaccounts.navigation.BottomBarTab
 import com.example.myaccounts.navigation.Home
-import com.example.myaccounts.navigation.bottomBar
-import com.example.myaccounts.navigation.navigateSingleTopTo
-import com.example.myaccounts.search.SearchBar
+import com.example.myaccounts.navigation.bottomBarItems
+import com.example.myaccounts.navigation.restoreStateOnReturn
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyAccountsApp()
+            MyAccountsTheme {
+                Surface {
+                    MyApp()
+                }
+            }
         }
     }
 }
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyAccountsApp() {
+fun MyApp() {
     MyAccountsTheme {
-        //如要讓程式碼可測試及重複使用，建議不要將整個navController直接傳遞至可組合項
         val navController = rememberNavController()
-        //導航控制器當前返回堆棧條目作為狀態,然後擷取目前的destination
+        val bottomBarState = rememberSaveable { mutableStateOf(true) }
+        val topBarState = rememberSaveable { (mutableStateOf(true)) }
+
+        val fabState = rememberSaveable { mutableStateOf(true) }
+
+        //添加skipPartiallyExpanded = true 后旋轉屏幕不會崩潰且位置一直
+        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        val scope = rememberCoroutineScope()
+        val showBottomSheet = rememberSaveable { mutableStateOf(false) }
+
         val currentBackStack by navController.currentBackStackEntryAsState()
-        //獲取您當前的目的地
-        //須決定「目前」顯示的內容，才能將這項資訊傳遞至RallyTabRow
         val currentDestination = currentBackStack?.destination
-        //將變量更改為此並使用概述作為備份屏幕（如果返回 null）
-        //如要更新currentScreen
-        //您必須疊代rallyTabRowScreens清單才能找出相符的路徑，
-        //然後傳回對應的RallyDestination
-        val currentScreen =
-            bottomBar.find { it.route == currentDestination?.route } ?: Home
+        val bottomBarCurrentScreen =
+            bottomBarItems.find { it.route == currentDestination?.route } ?: Home  //使用接口，密封類等崩潰
+
+        // 動畫狀態設置
+        when (currentBackStack?.destination?.route) {
+            "PlanAmount" -> {
+                bottomBarState.value = false
+                topBarState.value = true
+                fabState.value = false
+            }
+
+            "AccountTransfer" -> {
+                bottomBarState.value = false
+                topBarState.value = true
+                fabState.value = false
+            }
+
+            "Income" -> {
+                bottomBarState.value = false
+                topBarState.value = true
+                fabState.value = false
+            }
+
+            "PayFor" -> {
+                bottomBarState.value = false
+                topBarState.value = true
+                fabState.value = false
+            }
+
+            "AddAccount" -> {
+                bottomBarState.value = false
+                topBarState.value = true
+                fabState.value = false
+            }
+            else -> {
+                bottomBarState.value = true
+                topBarState.value = true
+                fabState.value = true
+            }
+        }
 
         Surface(tonalElevation = 5.dp) {
-            Scaffold(
-                topBar = { SearchBar() },
-                bottomBar = {
-                    BottomBarTab(
-                        allScreens = bottomBar,
-                        onTabSelected = { newScreen -> navController.navigateSingleTopTo(newScreen.route) },
-                        currentScreen = currentScreen
+            androidx.compose.material.Scaffold(
+                floatingActionButton = {
+                    IncomePayFor(
+                        currentBackStack = currentBackStack,
+                        sheetState = sheetState,
+                        scope = scope,
+                        showBottomSheet = showBottomSheet,
+                        onClick = { newScreen -> navController.restoreStateOnReturn(newScreen.route) },
+                        fabState = fabState
                     )
-                }
+                },
+
+                isFloatingActionButtonDocked = true,
+                floatingActionButtonPosition = androidx.compose.material.FabPosition.Center,
+
+                bottomBar = {
+                    AppBottomBarM3(
+                        bottomBarItems = bottomBarItems,
+                        onClick = { newScreen -> navController.restoreStateOnReturn(newScreen.route) },
+                        bottomBarCurrentScreen = bottomBarCurrentScreen,
+                        bottomBarState = bottomBarState
+                    )
+                },
             ) {
                 AppHost(navController = navController, modifier = Modifier.padding(it))
             }
@@ -64,3 +128,12 @@ fun MyAccountsApp() {
     }
 }
 
+@Preview
+@Composable
+private fun MyAccountsAppPrev() {
+    MyAccountsTheme {
+        Surface(tonalElevation = 5.dp) {
+            MyApp()
+        }
+    }
+}
