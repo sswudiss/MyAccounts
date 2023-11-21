@@ -1,6 +1,8 @@
 package com.example.myaccounts.account
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
@@ -13,15 +15,25 @@ import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import com.example.myaccounts.R
 
 /**
  * 收入屏幕
  */
 @Composable
 fun IncomeScreen() {
+    var amountInput by rememberSaveable {
+        mutableStateOf("")
+    }
+    val amount = amountInput.toDoubleOrNull() ?: 0.0
     Scaffold(
         bottomBar = {
             BottomAppBar(
@@ -54,10 +66,19 @@ fun IncomeScreen() {
                 }
             )
         },
-    ) { innerPadding ->
-        Text(
-            modifier = Modifier.padding(innerPadding),
-            text = "Example of a scaffold with a bottom app bar."
-        )
+    ) {
+        LazyColumn(modifier = Modifier.padding(it)) {
+          item {
+              AmountInput(
+                  label = R.string.income,
+                  keyboardOptions = KeyboardOptions(
+                      keyboardType = KeyboardType.Number,
+                      imeAction = ImeAction.Next
+                  ),
+                  value = amountInput,
+                  onValueChange = { amountInput = it }
+              )
+          }
+        }
     }
 }

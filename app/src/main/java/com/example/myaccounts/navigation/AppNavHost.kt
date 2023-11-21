@@ -21,39 +21,39 @@ fun AppHost(
 ) {
 
     NavHost(
+        modifier = modifier,
         navController = navController,
-        startDestination = Home.route,
-        modifier = modifier
+        startDestination = AppRoute.HOME
     ) {
         // 主頁
-        composable(route = Home.route) {
+        composable(route = AppRoute.HOME) {
             HomeScreen()
         }
        // 賬號頁面
-        composable(route = Account.route) {
+        composable(route = AppRoute.ACCOUNT) {
             AccountScreen()
         }
 
         // 計劃金額頁面
-        composable(route = PlanAmount.route) {
+        composable(route = AppRoute.PLAN_AMOUNT) {
             PlanAmountScreen()
         }
 
         // 賬號轉移頁面
-        composable(route = AccountTransfer.route) {
+        composable(route = AppRoute.ACCOUNT_TRANSFER) {
             AccountTransferScreen()
         }
 
         // 收入頁面
-        composable(route = Income.route) {
+        composable(route = AppRoute.INCOME) {
             IncomeScreen()
         }
        // 支出頁面
-        composable(route = PayFor.route) {
+        composable(route = AppRoute.PAY_FOR) {
             PayForScreen()
         }
        // 新增賬號頁面
-        composable(route = AddAccount.route) {
+        composable(route = AppRoute.ADD_ACCOUNT) {
             AddAccountScreen()
         }
     }
@@ -70,12 +70,4 @@ fun NavHostController.restoreStateOnReturn(route: String) = this.navigate(route)
     // 恢復先前由PopUpToBuilder.saveState或popUpToSaveState屬性儲存的任何狀態。
     // 如果先前沒有儲存導覽到的目標 ID 的狀態，則此操作無效
     restoreState = true
-}
-
-
-/**
- * 導航到單獨賬號
- */
-fun NavHostController.navigateToSingleAccount(accountType: String) {
-    this.restoreStateOnReturn("${SingleAccount.route} / $accountType")
 }

@@ -1,85 +1,61 @@
 package com.example.myaccounts.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBalance
-import androidx.compose.material.icons.filled.AccountBalanceWallet
-import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.MoreTime
-import androidx.compose.material.icons.filled.Transform
-import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+import com.example.myaccounts.R
 
-interface AppDestination {
-    val icon: ImageVector
-    val route: String
+object AppRoute {
+    const val HOME = "Home"
+    const val ACCOUNT = "Account"
+    const val PLAN_AMOUNT = "PlanAmount"  // 計劃金額
+    const val ACCOUNT_TRANSFER = "AccountTransfer"   // 賬號轉移
+    const val INCOME = "Income"   // 收入
+    const val PAY_FOR = "PayFor"  // 支出
+    const val ADD_ACCOUNT = "AddAccount"   // 新增賬號
+
 }
 
-object Home : AppDestination {
-    override val icon = Icons.Filled.Home
-    override val route = "Home"
-}
-
-object Account : AppDestination {
-    override val icon = Icons.Filled.Wallet
-    override val route = "Account"
-}
+data class AppDestination(
+    val route: String,
+    val selectedIcon: ImageVector,
+    val iconTextId: Int
+)
 
 /**
- * 單獨賬號
+ * 導航操作
  */
-object SingleAccount : AppDestination {
-    override val icon = Icons.Filled.AccountBalance
-    override val route = "single_account"
-    const val accountTypeArg = "account_type"
-    val routeWithArgs = "$route / {$accountTypeArg}"
-    val argument = listOf(navArgument(accountTypeArg) { type = NavType.StringType })
+class AppNavigationActions(private val navController: NavHostController) {
+    fun navigateTo(destination: AppDestination) {
+        navController.navigate(destination.route) {
+            // 避免當使用者選擇項目時在返回堆疊上建立一大堆目的地
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            // Avoid multiple copies of the same destination when reselecting the same item
+            // 避免同一目的地的多個副本
+            launchSingleTop = true
+            // Restore state when reselecting a previously selected item
+            // 重新選擇先前選擇的項目時恢復狀態
+            restoreState = true
+        }
+    }
 }
 
+//頂級目的地
+val TOP_LEVEL_DESTINATIONS = listOf(
+    AppDestination(
+        route = AppRoute.HOME,
+        selectedIcon = Icons.Default.Home,
+        iconTextId = R.string.home
+    ),
+    AppDestination(
+        route = AppRoute.ACCOUNT,
+        selectedIcon = Icons.Default.Wallet,
+        iconTextId = R.string.account
+    )
 
-/**
- * 計劃金額
- */
-object PlanAmount : AppDestination {
-    override val icon = Icons.Filled.MoreTime
-    override val route = "PlanAmount"
-}
-
-/**
- * 賬戶轉移
- */
-object AccountTransfer : AppDestination {
-    override val icon = Icons.Filled.Transform
-    override val route = "AccountTransfer"
-}
-
-/**
- * 收入
- */
-object Income : AppDestination {
-    override val icon = Icons.Filled.Download
-    override val route = "Income"
-}
-
-/**
- * 支出
- */
-object PayFor : AppDestination {
-    override val icon = Icons.Filled.Upload
-    override val route = "PayFor"
-}
-
-
-/**
- * 增加賬號
- */
-object AddAccount : AppDestination {
-    override val icon = Icons.Filled.AccountBalanceWallet
-    override val route = "AddAccount"
-}
-
-// 底部導航欄要顯示的内容
-val bottomBarItems = listOf(Home, Account)
+)

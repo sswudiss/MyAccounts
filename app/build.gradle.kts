@@ -68,6 +68,7 @@ dependencies {
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.window:window:1.2.0")
     //測試實施
     testImplementation("junit:junit:4.13.2")
     //android測試實現
@@ -82,7 +83,7 @@ dependencies {
     //添加全套材質圖標
     implementation("androidx.compose.material:material-icons-extended")
     
-    //新增視窗大小實用程式,響應式組件需要`WindowSizeClass
+    //配合不同螢幕大小調整版面配置,響應式組件需要`WindowSizeClass
     implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
 
     // Optional - Integration with ViewModels
