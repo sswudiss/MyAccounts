@@ -1,8 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyAccounts</string>
-    <string name="income">Income:</string>
     <string name="home">Home</string>
     <string name="account">Account</string>
-
-
+    <string name="income">Income:</string>
+    <string name="pay_for">PAY FOR</string>
+    <string name="plan_amount">PLAN AMOUNT</string>
+    <string name="account_transfer">ACCOUNT TRANSFER</string>
+    <string name="add_account">ADD ACCOUNT</string>
 </resources>

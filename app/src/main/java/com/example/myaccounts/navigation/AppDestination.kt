@@ -1,7 +1,13 @@
 package com.example.myaccounts.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.MoreTime
+import androidx.compose.material.icons.filled.Transform
+import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -24,6 +30,7 @@ data class AppDestination(
     val selectedIcon: ImageVector,
     val iconTextId: Int
 )
+
 
 /**
  * 導航操作
@@ -58,4 +65,39 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         iconTextId = R.string.account
     )
 
+)
+
+
+// 計劃金額
+val PLAN_AMOUNT = AppDestination(
+    route = AppRoute.PLAN_AMOUNT,
+    selectedIcon = Icons.Default.MoreTime,
+    iconTextId = R.string.plan_amount
+)
+
+// 賬戶轉移
+val ACCOUNT_TRANSFER = AppDestination(
+    route = AppRoute.ACCOUNT_TRANSFER,
+    selectedIcon = Icons.Default.Transform,
+    iconTextId = R.string.account_transfer
+)
+
+// 收入
+val INCOME = AppDestination(
+    route = AppRoute.INCOME,
+    selectedIcon = Icons.Default.Download,
+    iconTextId = R.string.income
+)
+// 支出
+val PAY_FOR = AppDestination(
+    route = AppRoute.PAY_FOR,
+    selectedIcon = Icons.Default.Upload,
+    iconTextId = R.string.plan_amount
+)
+
+// 支出
+val ADD_ACCOUNT = AppDestination(
+    route = AppRoute.ADD_ACCOUNT,
+    selectedIcon = Icons.Default.AccountBalanceWallet,
+    iconTextId = R.string.add_account
 )

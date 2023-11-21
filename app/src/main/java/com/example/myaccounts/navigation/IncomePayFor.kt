@@ -24,11 +24,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
+import com.example.myaccounts.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-/*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,7 +70,7 @@ fun IncomePayFor(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 ElevatedButton(onClick = {
-                                    onClick(PlanAmount)  //計劃金額
+                                    onClick(PLAN_AMOUNT)  //計劃金額
                                     scope.launch { sheetState.hide() }.invokeOnCompletion {
                                         if (!sheetState.isVisible) {
                                             showBottomSheet.value = false
@@ -77,16 +78,16 @@ fun IncomePayFor(
                                     }
                                 }) {
                                     Icon(
-                                        imageVector = PlanAmount.icon,
-                                        contentDescription = "Add planned payment"
+                                        imageVector = PLAN_AMOUNT.selectedIcon,
+                                        contentDescription =  stringResource(id = R.string.plan_amount)
                                     )
-                                    Text("ADD PLANNED PAYMENT")
+                                    Text(text = stringResource(id = R.string.plan_amount))
                                 }
 
                                 Spacer(modifier = Modifier.padding(6.dp))
 
                                 Button(onClick = {
-                                    onClick(AccountTransfer) //賬戶轉移
+                                    onClick(ACCOUNT_TRANSFER) //賬戶轉移
                                     scope.launch { sheetState.hide() }.invokeOnCompletion {
                                         if (!sheetState.isVisible) {
                                             showBottomSheet.value = false
@@ -95,10 +96,10 @@ fun IncomePayFor(
 
                                 }) {
                                     Icon(
-                                        imageVector = AccountTransfer.icon,
-                                        contentDescription = "Account transfer"
+                                        imageVector = ACCOUNT_TRANSFER.selectedIcon,
+                                        contentDescription = stringResource(id = R.string.account_transfer)
                                     )
-                                    Text("ACCOUNT TRANSFER")
+                                    Text(text = stringResource(id = R.string.account_transfer))
                                 }
                             }
                             Row(
@@ -108,7 +109,7 @@ fun IncomePayFor(
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 Button(onClick = {
-                                    onClick(Income)
+                                    onClick(INCOME)
                                     scope.launch { sheetState.hide() }.invokeOnCompletion {
                                         if (!sheetState.isVisible) {
                                             showBottomSheet.value = false
@@ -116,16 +117,16 @@ fun IncomePayFor(
                                     }
                                 }) {
                                     Icon(
-                                        imageVector = Income.icon,
-                                        contentDescription = "Add income"
+                                        imageVector = INCOME.selectedIcon,
+                                        contentDescription = stringResource(id = R.string.income)
                                     )
-                                    Text("ADD INCOME")
+                                    Text(text = stringResource(id = R.string.income))
                                 }
 
                                 Spacer(modifier = Modifier.padding(18.dp))
 
                                 Button(onClick = {
-                                    onClick(PayFor)
+                                    onClick(PAY_FOR)
                                     scope.launch { sheetState.hide() }.invokeOnCompletion {
                                         if (!sheetState.isVisible) {
                                             showBottomSheet.value = false
@@ -133,10 +134,10 @@ fun IncomePayFor(
                                     }
                                 }) {
                                     Icon(
-                                        imageVector = PayFor.icon,
-                                        contentDescription = "pay for"
+                                        imageVector = PAY_FOR.selectedIcon,
+                                        contentDescription = stringResource(id = R.string.pay_for)
                                     )
-                                    Text("PAY  FOR")
+                                    Text(text = stringResource(id = R.string.pay_for))
                                 }
                             }
                             //..........
@@ -149,7 +150,7 @@ fun IncomePayFor(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Button(onClick = {
-                                    onClick(AddAccount)
+                                    onClick(ADD_ACCOUNT)
                                     scope.launch { sheetState.hide() }.invokeOnCompletion {
                                         if (!sheetState.isVisible) {
                                             showBottomSheet.value = false
@@ -157,10 +158,10 @@ fun IncomePayFor(
                                     }
                                 }) {
                                     Icon(
-                                        imageVector = AddAccount.icon,
-                                        contentDescription = "Add Account"
+                                        imageVector = ADD_ACCOUNT.selectedIcon,
+                                        contentDescription = stringResource(id = R.string.add_account)
                                     )
-                                    Text("ADD ACCOUNT")
+                                    Text(text = stringResource(id = R.string.add_account))
                                 }
                             }
                     }
@@ -168,4 +169,4 @@ fun IncomePayFor(
             }
         }
     )
-}*/
+}

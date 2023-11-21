@@ -25,6 +25,7 @@ import com.example.myaccounts.navigation.AppBottomNavigationBarM3
 import com.example.myaccounts.navigation.AppHost
 import com.example.myaccounts.navigation.AppNavigationActions
 import com.example.myaccounts.navigation.AppRoute
+import com.example.myaccounts.navigation.IncomePayFor
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -64,9 +65,11 @@ fun MyApp(windowSize: WindowSizeClass) {
         val selectedDestination =
             navBackStackEntry?.destination?.route ?: AppRoute.HOME
 
-        /*    val currentDestination = navBackStackEntry?.destination
+/*
+            val currentDestination = navBackStackEntry?.destination
             val bottomBarCurrentScreen =
-                bottomBarItems.find { it.route == currentDestination?.route } ?: Home  //使用接口，密封類等崩潰*/
+                bottomBarItems.find { it.route == currentDestination?.route } ?: Home  //使用接口，密封類等崩潰
+*/
 
 
         // 動畫狀態設置
@@ -112,20 +115,21 @@ fun MyApp(windowSize: WindowSizeClass) {
         when (windowSize.widthSizeClass) {
             WindowWidthSizeClass.Compact -> {
                 androidx.compose.material.Scaffold(
-             /*       floatingActionButton = {
+                    floatingActionButton = {
                         IncomePayFor(
                             currentBackStack = navBackStackEntry,
                             sheetState = sheetState,
                             scope = scope,
                             showBottomSheet = showBottomSheet,
-                            onClick = { newScreen ->
+/*                            onClick = { newScreen ->
                                 navController.restoreStateOnReturn(
                                     newScreen.route
                                 )
-                            },
+                            },*/
+                            onClick= navigationActions::navigateTo,
                             fabState = fabState
                         )
-                    },*/
+                    },
 
                     isFloatingActionButtonDocked = true,
                     floatingActionButtonPosition = androidx.compose.material.FabPosition.Center,
