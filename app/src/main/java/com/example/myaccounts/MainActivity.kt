@@ -47,80 +47,84 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyApp(windowSize: WindowSizeClass) {
-            val navController = rememberNavController()
-            val navigationActions = remember(navController) {
-                AppNavigationActions(navController)
+    val navController = rememberNavController()
+    val navigationActions = remember(navController) {
+        AppNavigationActions(navController)
+    }
+
+    val bottomBarState = rememberSaveable { mutableStateOf(true) }
+    val topBarState = rememberSaveable { (mutableStateOf(true)) }
+    val fabState = rememberSaveable { mutableStateOf(true) }
+
+    //添加skipPartiallyExpanded = true 后旋轉屏幕不會崩潰且位置一直
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val scope = rememberCoroutineScope()
+    val showBottomSheet = rememberSaveable { mutableStateOf(false) }
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val selectedDestination =
+        navBackStackEntry?.destination?.route ?: AppRoute.OVERVIEW
+
+
+    // 動畫狀態設置
+    when (navBackStackEntry?.destination?.route) {
+        "ADD_INCOME" -> {
+            bottomBarState.value = false
+            fabState.value = false
+        }
+
+        "ADD_PAY_FOR" -> {
+            bottomBarState.value = false
+            fabState.value = false
+        }
+
+        "ADD_ACCOUNT" -> {
+            fabState.value = false
+        }
+
+        "PLAN_AMOUNT" -> {
+            fabState.value = false
+        }
+
+        "ACCOUNT_TRANSFER" -> {
+            fabState.value = false
+        }
+
+        else -> {
+            bottomBarState.value = true
+            topBarState.value = true
+            fabState.value = true
+        }
+    }
+
+    //
+    when (windowSize.widthSizeClass) {
+        WindowWidthSizeClass.Compact -> {
+            Scaffold(
+                floatingActionButton = {
+                    AppModalBottomSheet2(
+                        currentBackStack = navBackStackEntry,
+                        sheetState = sheetState,
+                        scope = scope,
+                        showBottomSheet = showBottomSheet,
+                        fabState = fabState,
+                        navigationToTopLevelDestination = navigationActions::navigateTo
+                    )
+                },
+
+                bottomBar = {
+                    AppBottomNavigationBarM3(
+                        selectedDestination = selectedDestination,
+                        navigationToTopLevelDestination = navigationActions::navigateTo,
+                        bottomBarState = bottomBarState
+                    )
+                },
+            ) {
+                AppHost(navController = navController, modifier = Modifier.padding(it))
             }
-
-            val bottomBarState = rememberSaveable { mutableStateOf(true) }
-            val topBarState = rememberSaveable { (mutableStateOf(true)) }
-            val fabState = rememberSaveable { mutableStateOf(true) }
-
-            //添加skipPartiallyExpanded = true 后旋轉屏幕不會崩潰且位置一直
-            val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-            val scope = rememberCoroutineScope()
-            val showBottomSheet = rememberSaveable { mutableStateOf(false) }
-
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val selectedDestination =
-                navBackStackEntry?.destination?.route ?: AppRoute.OVERVIEW
-
-
-            // 動畫狀態設置
-            when (navBackStackEntry?.destination?.route) {
-                "ADD_INCOME" -> {
-                    bottomBarState.value = false
-                    topBarState.value = true
-                    fabState.value = false
-                }
-
-                "ADD_PAY_FOR" -> {
-                    bottomBarState.value = false
-                    topBarState.value = true
-                    fabState.value = false
-                }
-
-                "ADD_ACCOUNT" -> {
-                    bottomBarState.value = false
-                    topBarState.value = true
-                    fabState.value = false
-                }
-
-                else -> {
-                    bottomBarState.value = true
-                    topBarState.value = true
-                    fabState.value = true
-                }
-            }
-
-            //
-            when (windowSize.widthSizeClass) {
-                WindowWidthSizeClass.Compact -> {
-                    Scaffold(
-                        floatingActionButton = {
-                            AppModalBottomSheet2(
-                                currentBackStack = navBackStackEntry,
-                                sheetState = sheetState,
-                                scope = scope,
-                                showBottomSheet = showBottomSheet,
-                                fabState = fabState,
-                                navigationToTopLevelDestination = navigationActions::navigateTo
-                            )
-                        },
-
-                        bottomBar = {
-                            AppBottomNavigationBarM3(
-                                selectedDestination = selectedDestination,
-                                navigationToTopLevelDestination = navigationActions::navigateTo,
-                                bottomBarState = bottomBarState
-                            )
-                        },
-                    ) {
-                        AppHost(navController = navController, modifier = Modifier.padding(it))
-                    }
-                }
+        }
 
 //            WindowWidthSizeClass.Expanded -> {
 
-            }
+    }
 }
