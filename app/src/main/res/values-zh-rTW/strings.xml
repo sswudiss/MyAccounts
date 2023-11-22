@@ -8,4 +8,5 @@
     <string name="plan_amount">計劃金額</string>
     <string name="account_transfer">賬號轉移</string>
     <string name="add_account">新增賬號</string>
+    <string name="overview">概覽</string>
 </resources>

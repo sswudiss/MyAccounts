@@ -1,4 +1,4 @@
-package com.example.myaccounts.account
+package com.example.myaccounts.utils
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.text.KeyboardOptions

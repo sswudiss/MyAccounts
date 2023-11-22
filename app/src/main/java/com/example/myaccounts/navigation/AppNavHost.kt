@@ -9,10 +9,12 @@ import androidx.navigation.compose.composable
 import com.example.myaccounts.home.HomeScreen
 import com.example.myaccounts.account.AccountScreen
 import com.example.myaccounts.account.AccountTransferScreen
-import com.example.myaccounts.account.AddAccountScreen
-import com.example.myaccounts.account.PayForScreen
-import com.example.myaccounts.account.IncomeScreen
+import com.example.myaccounts.account.AddAccount
+import com.example.myaccounts.payfor.PayForScreen
+import com.example.myaccounts.income.IncomeScreen
 import com.example.myaccounts.account.PlanAmountScreen
+import com.example.myaccounts.income.AddIncome
+import com.example.myaccounts.payfor.AddPayFor
 
 @Composable
 fun AppHost(
@@ -23,14 +25,24 @@ fun AppHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = AppRoute.HOME
+        startDestination = AppRoute.OVERVIEW
     ) {
         // 主頁
-        composable(route = AppRoute.HOME) {
+        composable(route = AppRoute.OVERVIEW) {
             HomeScreen()
         }
-       // 賬號頁面
-        composable(route = AppRoute.ACCOUNT) {
+
+        // 收入頁面
+        composable(route = AppRoute.INCOME_SCREEN) {
+            IncomeScreen()
+        }
+        // 支出頁面
+        composable(route = AppRoute.PAY_FOR_SCREEN) {
+            PayForScreen()
+        }
+
+        // 賬號頁面
+        composable(route = AppRoute.ACCOUNT_SCREEN) {
             AccountScreen()
         }
 
@@ -44,18 +56,21 @@ fun AppHost(
             AccountTransferScreen()
         }
 
-        // 收入頁面
-        composable(route = AppRoute.INCOME) {
-            IncomeScreen()
+        // 新增收入
+        composable(route = AppRoute.ADD_INCOME) {
+            AddIncome()
         }
-       // 支出頁面
-        composable(route = AppRoute.PAY_FOR) {
-            PayForScreen()
+
+        // 新增支出
+        composable(route = AppRoute.ADD_PAY_FOR) {
+            AddPayFor()
         }
-       // 新增賬號頁面
+
+        // 新增賬號
         composable(route = AppRoute.ADD_ACCOUNT) {
-            AddAccountScreen()
+            AddAccount()
         }
+
     }
 }
 
