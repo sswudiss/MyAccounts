@@ -6,6 +6,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem

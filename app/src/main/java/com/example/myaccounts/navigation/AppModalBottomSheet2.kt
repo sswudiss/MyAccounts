@@ -26,9 +26,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
+import com.example.compose.income_color
+import com.example.compose.md_theme_light_primary
+import com.example.compose.md_theme_light_primaryContainer
+import com.example.compose.pay_for_color
 import com.example.myaccounts.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -62,6 +67,10 @@ fun AppModalBottomSheet2(
                         "PAY_FOR_SCREEN" -> navigationToTopLevelDestination(ADD_PAY_FOR)
                     }
                 },
+                containerColor = when (currentBackStack?.destination?.route) {
+                    "OVERVIEW" -> MaterialTheme.colorScheme.primary
+                    else -> MaterialTheme.colorScheme.primaryContainer
+                }
             ) {
                 Icon(Icons.Filled.Add, "Add")
                 FloatingActionButtonDefaults(
