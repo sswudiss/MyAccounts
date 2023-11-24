@@ -1,4 +1,4 @@
-package com.example.myaccounts.account
+package com.example.myaccounts.income
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,14 +9,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 /**
- * 支付屏幕
+ * 收入屏幕
  */
 @Composable
-fun PayForScreen() {
+fun IncomeScreen() {
     Column(Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
-        Text(text = "PayFor Screen 支付屏幕")
+        Text(text = "Income Screen")
     }
 }
+

@@ -9,10 +9,12 @@ import androidx.navigation.compose.composable
 import com.example.myaccounts.home.HomeScreen
 import com.example.myaccounts.account.AccountScreen
 import com.example.myaccounts.account.AccountTransferScreen
-import com.example.myaccounts.account.AddAccountScreen
-import com.example.myaccounts.account.PayForScreen
-import com.example.myaccounts.account.IncomeScreen
+import com.example.myaccounts.account.AddAccount
+import com.example.myaccounts.payfor.PayForScreen
+import com.example.myaccounts.income.IncomeScreen
 import com.example.myaccounts.account.PlanAmountScreen
+import com.example.myaccounts.income.AddIncome
+import com.example.myaccounts.payfor.AddPayFor
 
 @Composable
 fun AppHost(
@@ -21,41 +23,55 @@ fun AppHost(
 ) {
 
     NavHost(
+        modifier = modifier,
         navController = navController,
-        startDestination = Home.route,
-        modifier = modifier
+        startDestination = AppRoute.OVERVIEW
     ) {
         // 主頁
-        composable(route = Home.route) {
+        composable(route = AppRoute.OVERVIEW) {
             HomeScreen()
         }
-       // 賬號頁面
-        composable(route = Account.route) {
-            AccountScreen()
+
+        // 收入頁面
+        composable(route = AppRoute.INCOME_SCREEN) {
+            IncomeScreen()
+        }
+        // 支出頁面
+        composable(route = AppRoute.PAY_FOR_SCREEN) {
+            PayForScreen()
         }
 
+
         // 計劃金額頁面
-        composable(route = PlanAmount.route) {
+        composable(route = AppRoute.PLAN_AMOUNT) {
             PlanAmountScreen()
         }
 
         // 賬號轉移頁面
-        composable(route = AccountTransfer.route) {
+        composable(route = AppRoute.ACCOUNT_TRANSFER) {
             AccountTransferScreen()
         }
 
-        // 收入頁面
-        composable(route = Income.route) {
-            IncomeScreen()
+        // 新增收入
+        composable(route = AppRoute.ADD_INCOME) {
+            AddIncome()
         }
-       // 支出頁面
-        composable(route = PayFor.route) {
-            PayForScreen()
+
+        // 新增支出
+        composable(route = AppRoute.ADD_PAY_FOR) {
+            AddPayFor()
         }
-       // 新增賬號頁面
-        composable(route = AddAccount.route) {
-            AddAccountScreen()
+
+        // 新增賬號
+        composable(route = AppRoute.ADD_ACCOUNT) {
+            AddAccount()
         }
+
+        // 賬號頁面
+        composable(route = AppRoute.ACCOUNT_SCREEN) {
+            AccountScreen()
+        }
+
     }
 }
 
@@ -70,12 +86,4 @@ fun NavHostController.restoreStateOnReturn(route: String) = this.navigate(route)
     // 恢復先前由PopUpToBuilder.saveState或popUpToSaveState屬性儲存的任何狀態。
     // 如果先前沒有儲存導覽到的目標 ID 的狀態，則此操作無效
     restoreState = true
-}
-
-
-/**
- * 導航到單獨賬號
- */
-fun NavHostController.navigateToSingleAccount(accountType: String) {
-    this.restoreStateOnReturn("${SingleAccount.route} / $accountType")
 }
