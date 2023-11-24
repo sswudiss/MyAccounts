@@ -41,10 +41,6 @@ fun AppHost(
             PayForScreen()
         }
 
-        // 賬號頁面
-        composable(route = AppRoute.ACCOUNT_SCREEN) {
-            AccountScreen()
-        }
 
         // 計劃金額頁面
         composable(route = AppRoute.PLAN_AMOUNT) {
@@ -69,6 +65,11 @@ fun AppHost(
         // 新增賬號
         composable(route = AppRoute.ADD_ACCOUNT) {
             AddAccount()
+        }
+
+        // 賬號頁面
+        composable(route = AppRoute.ACCOUNT_SCREEN) {
+            AccountScreen()
         }
 
     }

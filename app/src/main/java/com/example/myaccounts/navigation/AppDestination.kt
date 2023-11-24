@@ -65,14 +65,14 @@ val ACCOUNT_TRANSFER = AppDestination(
     iconTextId = R.string.account_transfer
 )
 
-// 收入
+// 新增收入
 val ADD_INCOME = AppDestination(
     route = AppRoute.ADD_INCOME,
     selectedIcon = Icons.Default.Download,
     iconTextId = R.string.income
 )
 
-// 支出
+// 新增支出
 val ADD_PAY_FOR = AppDestination(
     route = AppRoute.ADD_PAY_FOR,
     selectedIcon = Icons.Default.Upload,

@@ -26,7 +26,7 @@ import com.example.myaccounts.navigation.AppBottomNavigationBarM3
 import com.example.myaccounts.navigation.AppHost
 import com.example.myaccounts.navigation.AppNavigationActions
 import com.example.myaccounts.navigation.AppRoute
-import com.example.myaccounts.navigation.AppModalBottomSheet2
+import com.example.myaccounts.navigation.FabM3
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -102,7 +102,7 @@ fun MyApp(windowSize: WindowSizeClass) {
         WindowWidthSizeClass.Compact -> {
             Scaffold(
                 floatingActionButton = {
-                    AppModalBottomSheet2(
+                    FabM3(
                         currentBackStack = navBackStackEntry,
                         sheetState = sheetState,
                         scope = scope,
