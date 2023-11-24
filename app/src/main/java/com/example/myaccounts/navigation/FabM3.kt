@@ -33,12 +33,12 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FabM3(
-    currentBackStack: NavBackStackEntry?,
-    sheetState: SheetState,
-    scope: CoroutineScope,
+    navBackStackEntry: NavBackStackEntry?,
     showBottomSheet: MutableState<Boolean>,
     fabState: MutableState<Boolean>,
-    navigationToTopLevelDestination: (AppDestination) -> Unit
+    navigationToTopLevelDestination: (AppDestination) -> Unit,
+    sheetState: SheetState,
+    scope: CoroutineScope
 ) {
     AnimatedVisibility(
         visible = fabState.value,
@@ -47,7 +47,7 @@ fun FabM3(
         content = {
             FloatingActionButton(
                 onClick = {
-                    when (currentBackStack?.destination?.route) {
+                    when (navBackStackEntry?.destination?.route) {
                         "OVERVIEW" -> {
                             showBottomSheet.value = true
                         }
@@ -59,14 +59,14 @@ fun FabM3(
                         "PAY_FOR_SCREEN" -> navigationToTopLevelDestination(ADD_PAY_FOR)
                     }
                 },
-                containerColor = when (currentBackStack?.destination?.route) {
+                containerColor = when (navBackStackEntry?.destination?.route) {
                     "OVERVIEW" -> MaterialTheme.colorScheme.primary
                     else -> MaterialTheme.colorScheme.primaryContainer
                 }
             ) {
                 Icon(Icons.Filled.Add, "Add")
-                FloatingActionButtonDefaults(
-                    currentBackStack = currentBackStack,
+                AppModalBottomSheet(
+                    currentBackStack = navBackStackEntry,
                     sheetState = sheetState,
                     scope = scope,
                     showBottomSheet = showBottomSheet,
@@ -80,7 +80,7 @@ fun FabM3(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FloatingActionButtonDefaults(
+fun AppModalBottomSheet(
     currentBackStack: NavBackStackEntry?,
     sheetState: SheetState,
     scope: CoroutineScope,

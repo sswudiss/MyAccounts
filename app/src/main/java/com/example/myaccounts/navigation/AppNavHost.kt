@@ -74,16 +74,3 @@ fun AppNavHost(
 
     }
 }
-
-/**
- * 返回時回到主頁以及保存捲動位置
- */
-fun NavHostController.restoreStateOnReturn(route: String) = this.navigate(route) {
-    // 在導航之前彈出到給定的目的地。這將從返回堆疊中彈出所有不匹配的目標，直到找到該目標
-    popUpTo(this@restoreStateOnReturn.graph.findStartDestination().id) { saveState = true }
-    launchSingleTop = true  //作為單頂啟動（即，返回堆疊頂部最多有一個給定目的地的副本
-
-    // 恢復先前由PopUpToBuilder.saveState或popUpToSaveState屬性儲存的任何狀態。
-    // 如果先前沒有儲存導覽到的目標 ID 的狀態，則此操作無效
-    restoreState = true
-}
