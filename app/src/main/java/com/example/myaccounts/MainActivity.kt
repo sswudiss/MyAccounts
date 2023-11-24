@@ -18,11 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.MyAccountsTheme
+import com.example.myaccounts.navigation.AppNavHost
 import com.example.myaccounts.navigation.FabM2
-import com.example.myaccounts.navigation.AppBottomBarM3
-import com.example.myaccounts.navigation.AppHost
-import com.example.myaccounts.navigation.Home
-import com.example.myaccounts.navigation.bottomBarItems
 import com.example.myaccounts.navigation.restoreStateOnReturn
 
 class MainActivity : ComponentActivity() {
@@ -55,8 +52,7 @@ fun MyApp() {
 
         val currentBackStack by navController.currentBackStackEntryAsState()
         val currentDestination = currentBackStack?.destination
-        val bottomBarCurrentScreen =
-            bottomBarItems.find { it.route == currentDestination?.route } ?: Home  //使用接口，密封類等崩潰
+
 
         // 動畫狀態設置
         when (currentBackStack?.destination?.route) {
@@ -113,15 +109,10 @@ fun MyApp() {
                 floatingActionButtonPosition = androidx.compose.material.FabPosition.Center,
 
                 bottomBar = {
-                    AppBottomBarM3(
-                        bottomBarItems = bottomBarItems,
-                        onClick = { newScreen -> navController.restoreStateOnReturn(newScreen.route) },
-                        bottomBarCurrentScreen = bottomBarCurrentScreen,
-                        bottomBarState = bottomBarState
-                    )
+
                 },
             ) {
-                AppHost(navController = navController, modifier = Modifier.padding(it))
+                AppNavHost(navController = navController, modifier = Modifier.padding(it))
             }
         }
     }

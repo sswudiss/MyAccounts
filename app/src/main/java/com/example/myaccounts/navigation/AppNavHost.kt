@@ -17,7 +17,7 @@ import com.example.myaccounts.income.AddIncome
 import com.example.myaccounts.payfor.AddPayFor
 
 @Composable
-fun AppHost(
+fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
