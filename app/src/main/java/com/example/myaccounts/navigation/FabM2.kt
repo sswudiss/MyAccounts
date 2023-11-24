@@ -26,18 +26,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
-import com.example.myaccounts.navigation.AccountTransfer
-import com.example.myaccounts.navigation.AddAccount
-import com.example.myaccounts.navigation.PayFor
-import com.example.myaccounts.navigation.Income
-import com.example.myaccounts.navigation.AppDestination
-import com.example.myaccounts.navigation.PlanAmount
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IncomePayFor(
+fun FabM2(
     currentBackStack: NavBackStackEntry?,
     sheetState: SheetState,
     scope: CoroutineScope,

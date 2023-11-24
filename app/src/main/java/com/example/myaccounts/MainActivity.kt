@@ -18,8 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.MyAccountsTheme
-import com.example.myaccounts.navigation.IncomePayFor
-import com.example.myaccounts.navigation.AppBottomBarM2
+import com.example.myaccounts.navigation.FabM2
 import com.example.myaccounts.navigation.AppBottomBarM3
 import com.example.myaccounts.navigation.AppHost
 import com.example.myaccounts.navigation.Home
@@ -100,7 +99,7 @@ fun MyApp() {
         Surface(tonalElevation = 5.dp) {
             androidx.compose.material.Scaffold(
                 floatingActionButton = {
-                    IncomePayFor(
+                    FabM2(
                         currentBackStack = currentBackStack,
                         sheetState = sheetState,
                         scope = scope,
