@@ -31,8 +31,8 @@ fun AppBottomNavigationBarM3(
         // 用於消失動畫，預設在縮小時淡出
         exit = slideOutVertically(targetOffsetY = { it }),
         content = {
-            BottomAppBar(  //使用材料設計3
-            ) {
+//            BottomAppBar(  //使用材料設計3
+//            ) {
                 NavigationBar(modifier = Modifier.fillMaxWidth()) {
                     TOP_LEVEL_DESTINATIONS.forEach {
                         NavigationBarItem(
@@ -48,7 +48,7 @@ fun AppBottomNavigationBarM3(
                         )
                     }
                 }
-            }
+//            }
         }
     )
 }
