@@ -10,6 +10,7 @@ android {
     namespace = "com.example.myaccounts"
     compileSdk = 34
 
+    //預設配置
     defaultConfig {
         applicationId = "com.example.myaccounts"
         minSdk = 29
@@ -19,7 +20,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
-            useSupportLibrary = true
+            useSupportLibrary = true //使用支援庫
         }
     }
 
@@ -102,7 +103,6 @@ dependencies {
     //ROOM
     implementation("androidx.room:room-runtime:2.5.2")
 
-//*******如果使用协程添加下面的*********
 // Kotlin Extensions and Coroutines support for Room.
 // Room 的 Kotlin 擴展和協程支持
     implementation("androidx.room:room-ktx:2.5.2")
