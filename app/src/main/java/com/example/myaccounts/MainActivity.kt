@@ -8,10 +8,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,15 +25,13 @@ import com.example.myaccounts.navigation.AppRoute
 import com.example.myaccounts.navigation.FabM3
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyAccountsTheme {
                 Surface {
-                    //
-                    val windowSizeClass = calculateWindowSizeClass(this)
-                    MyApp(windowSizeClass)
+                    MyApp()
                 }
             }
         }
@@ -46,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyApp(windowSize: WindowSizeClass) {
+fun MyApp() {
     val navController = rememberNavController()
     val navigationActions = remember(navController) {
         AppNavigationActions(navController)
@@ -90,6 +84,7 @@ fun MyApp(windowSize: WindowSizeClass) {
             fabState.value = false
         }
 
+
         else -> {
             bottomBarState.value = true
             topBarState.value = true
@@ -97,34 +92,27 @@ fun MyApp(windowSize: WindowSizeClass) {
         }
     }
 
-    //
-    when (windowSize.widthSizeClass) {
-        WindowWidthSizeClass.Compact -> {
-            Scaffold(
-                floatingActionButton = {
-                    FabM3(
-                        navBackStackEntry = navBackStackEntry,
-                        sheetState = sheetState,
-                        scope = scope,
-                        showBottomSheet = showBottomSheet,
-                        fabState = fabState,
-                        navigationToTopLevelDestination = navigationActions::navigateTo
-                    )
-                },
+    Scaffold(
+        floatingActionButton = {
+            FabM3(
+                navBackStackEntry = navBackStackEntry,
+                sheetState = sheetState,
+                scope = scope,
+                showBottomSheet = showBottomSheet,
+                fabState = fabState,
+                navigationToTopLevelDestination = navigationActions::navigateTo
+            )
+        },
 
-                bottomBar = {
-                    AppBottomNavigationBarM3(
-                        selectedDestination = selectedDestination,
-                        navigationToTopLevelDestination = navigationActions::navigateTo,
-                        bottomBarState = bottomBarState
-                    )
-                },
-            ) {
-                AppNavHost(navController = navController, modifier = Modifier.padding(it))
-            }
-        }
-
-//            WindowWidthSizeClass.Expanded -> {
-
+        bottomBar = {
+            AppBottomNavigationBarM3(
+                selectedDestination = selectedDestination,
+                navigationToTopLevelDestination = navigationActions::navigateTo,
+                bottomBarState = bottomBarState
+            )
+        },
+    ) {
+        AppNavHost(navController = navController, modifier = Modifier.padding(it))
     }
 }
+
