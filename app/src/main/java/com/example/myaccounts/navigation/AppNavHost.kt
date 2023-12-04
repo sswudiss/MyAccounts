@@ -10,11 +10,11 @@ import com.example.myaccounts.home.HomeScreen
 import com.example.myaccounts.account.AccountScreen
 import com.example.myaccounts.account.AccountTransferScreen
 import com.example.myaccounts.account.AddAccount
-import com.example.myaccounts.payfor.PayForScreen
-import com.example.myaccounts.income.IncomeScreen
+import com.example.myaccounts.transaction.payfor.PayForScreen
+import com.example.myaccounts.transaction.income.IncomeScreen
 import com.example.myaccounts.account.PlanAmountScreen
-import com.example.myaccounts.income.AddIncome
-import com.example.myaccounts.payfor.AddPayFor
+import com.example.myaccounts.transaction.income.AddIncome
+import com.example.myaccounts.transaction.payfor.AddPayFor
 
 @Composable
 fun AppNavHost(

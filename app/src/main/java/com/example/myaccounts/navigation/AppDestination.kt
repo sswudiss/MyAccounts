@@ -51,7 +51,7 @@ val TOP_LEVEL_DESTINATIONS = listOf(
 )
 
 
-// 計劃金額
+// 計劃金額(預算金額)
 val PLAN_AMOUNT = AppDestination(
     route = AppRoute.PLAN_AMOUNT,
     selectedIcon = Icons.Default.MoreTime,

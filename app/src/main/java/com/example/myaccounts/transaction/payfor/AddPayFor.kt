@@ -1,4 +1,4 @@
-package com.example.myaccounts.payfor
+package com.example.myaccounts.transaction.payfor
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

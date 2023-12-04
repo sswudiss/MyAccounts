@@ -1,4 +1,4 @@
-package com.example.myaccounts.income
+package com.example.myaccounts.transaction.income
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,29 +36,10 @@ import com.example.myaccounts.account.AccountCategoriesRow
 import com.example.myaccounts.utils.AmountInput
 import com.example.myaccounts.utils.AppDatePicker
 
+
+
 @Composable
 fun AddIncome() {
-    var amountInput by rememberSaveable { mutableStateOf("") }
-    val amount = amountInput.toDoubleOrNull() ?: 0.0
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        AppDatePicker()
-        Spacer(modifier = Modifier.padding(6.dp))
-        AmountInput(
-            label = R.string.income,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
-            ),
-            value = amountInput,
-            onValueChange = { amountInput = it }
-        )
-        Spacer(modifier = Modifier.padding(6.dp))
-        AccountCategoriesRow()
 
-    }
 }
 

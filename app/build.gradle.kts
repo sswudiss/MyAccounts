@@ -81,6 +81,8 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     //ROOM
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     //協程
@@ -89,6 +91,7 @@ dependencies {
 
     //Compose-ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     //LiveData
     implementation(libs.androidx.compose.runtime.livedata)
     //添加全套材質圖標

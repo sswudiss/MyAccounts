@@ -1,4 +1,4 @@
-package com.example.myaccounts.planned
+package com.example.myaccounts.transaction.planned
 
 /**
  * 一次性計劃付款- One-time planned payment

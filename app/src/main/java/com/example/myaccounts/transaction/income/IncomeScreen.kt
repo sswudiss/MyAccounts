@@ -1,4 +1,4 @@
-package com.example.myaccounts.income
+package com.example.myaccounts.transaction.income
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
