@@ -22,6 +22,7 @@ object AppRoute {
     const val ADD_INCOME = "ADD_INCOME"     //新增收入
     const val ADD_PAY_FOR = "ADD_PAY_FOR"   //新增支付
     const val ADD_ACCOUNT = "ADD_ACCOUNT"   //新增賬號
+    const val TRANSACTION_DETAILS = "TRANSACTION_DETAILS" //交易詳情
 
 }
 
@@ -106,4 +107,15 @@ class AppNavigationActions(private val navController: NavHostController) {
         }
     }
 }
+
+/*
+fun withArgs(vararg args: String): String {
+    return buildString {
+        append(route)
+        args.forEach { arg ->
+            append("/$arg")
+        }
+    }
+}
+*/
 

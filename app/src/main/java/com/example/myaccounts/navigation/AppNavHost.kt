@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.myaccounts.home.HomeScreen
 import com.example.myaccounts.account.AccountScreen
 import com.example.myaccounts.account.AccountTransferScreen
@@ -13,6 +15,7 @@ import com.example.myaccounts.account.AddAccount
 import com.example.myaccounts.transaction.payfor.PayForScreen
 import com.example.myaccounts.transaction.income.IncomeScreen
 import com.example.myaccounts.account.PlanAmountScreen
+import com.example.myaccounts.transaction.TransactionDetails
 import com.example.myaccounts.transaction.income.AddIncome
 import com.example.myaccounts.transaction.payfor.AddPayFor
 
@@ -34,7 +37,7 @@ fun AppNavHost(
 
         // 收入頁面
         composable(route = AppRoute.INCOME_SCREEN) {
-            IncomeScreen()
+            IncomeScreen(navController=navController,transactionType="Income")
         }
         // 支出頁面
         composable(route = AppRoute.PAY_FOR_SCREEN) {
@@ -54,7 +57,7 @@ fun AppNavHost(
 
         // 新增收入
         composable(route = AppRoute.ADD_INCOME) {
-            AddIncome()
+            AddIncome(navController=navController)
         }
 
         // 新增支出
@@ -72,5 +75,16 @@ fun AppNavHost(
             AccountScreen()
         }
 
+        // 單獨賬號詳細資訊畫面
+        composable(
+            route = AppRoute.TRANSACTION_DETAILS + "/{transactionId}",
+            arguments = listOf(navArgument("transactionId") {
+                type = NavType.IntArrayType
+                defaultValue = -1
+            })
+        ) {
+            val transactionId = it.arguments?.getInt("transactionId") ?: -1
+            TransactionDetails(navController = navController, transactionId = transactionId)
+        }
     }
 }

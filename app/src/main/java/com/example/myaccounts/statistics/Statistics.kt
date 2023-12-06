@@ -20,8 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.md_theme_light_primary
 import com.example.compose.md_theme_light_secondaryContainer
-import com.example.myaccounts.data.MonthlyData
-import com.example.myaccounts.data.year2022
 
 /**
  * 收入統計 income statistics
@@ -54,6 +52,7 @@ import com.example.myaccounts.data.year2022
 /**
  * 柱狀比例圖
  */
+/*
 @Composable
 fun Histogram(modifier: Modifier = Modifier) {
     Surface(
@@ -105,4 +104,4 @@ fun Columnar(
 @Composable
 private fun HistogramPrev() {
     Histogram()
-}
+}*/
