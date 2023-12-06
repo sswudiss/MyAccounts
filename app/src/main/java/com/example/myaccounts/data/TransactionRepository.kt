@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 /**
  * 使用協程儲存庫將存取 Dao 以在表上觸發查詢
  */
+/*
 class TransactionRepository(private val transactionDao: TransactionDao) {
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
@@ -38,4 +39,13 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
             transactionDao.deleteTransactionById(id)
         }
     }
+}*/
+
+interface TransactionRepository {
+    suspend fun insert(transaction: TransactionEntity)
+    suspend fun update(transaction: TransactionEntity)
+    suspend fun getAllTransactions(): Flow<List<TransactionEntity>>
+    suspend fun getTransactionById(id:Int): Flow<TransactionEntity>
+    suspend fun deleteTransactionById(id:Int)
+
 }
