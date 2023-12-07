@@ -42,12 +42,11 @@ android {
         jvmTarget = "19"
     }
 
-
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
     packaging {
         resources {
@@ -65,7 +64,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    //NavController
+    //NavHostController
+    implementation(libs.androidx.navigation.runtime.ktx)
+    //NavHost
     implementation(libs.androidx.navigation.compose)
     //FoldingFeature
     implementation(libs.androidx.window)
@@ -81,10 +82,10 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     //ROOM
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+//    implementation(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
     //協程
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)

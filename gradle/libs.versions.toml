@@ -1,7 +1,6 @@
 [versions]
 agp = "8.3.0-alpha16"
-liveData = "1.5.4"
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -9,16 +8,18 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.2"
 activityCompose = "1.8.1"
 composeBom = "2023.10.01"
+
+navigationRuntimeKtx = "2.7.5"
 navigationCompose = "2.7.5"
 window = "1.2.0"
-hilt = "2.48.1"
+hilt = "2.49"
 hiltNavigationCompose = "1.1.0"
 ksp = "1.9.20-1.0.14"
 material3 = "1.1.2"
 room = "2.6.1"
 coroutines = "1.7.3"
 viewModelCompose = "2.6.2"
-lifecycle = "2.6.2"
+liveData = "1.5.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,10 +33,14 @@ androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version = "1.5.4" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
+
+# navigation
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+# window
 androidx-window = { group = "androidx.window", name = "window", version.ref = "window" }
 
 # Hilt
@@ -59,7 +64,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 
 # viewmodel-compose
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
-androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "viewModelCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
