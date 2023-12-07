@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
 import com.example.myaccounts.R
 import com.example.myaccounts.navigation.AppRoute.ACCOUNT_SCREEN
 import kotlinx.coroutines.CoroutineScope
@@ -54,10 +55,12 @@ fun FabM3(
                         }
 
                         "TRANSACTION_SCREEN" -> {
-                            Screen.TransactionDetails.route
+
                         }
 
-                        "ACCOUNT_SCREEN" -> navigationToTopLevelDestination(TOP_LEVEL_DESTINATIONS[2])
+                        "ACCOUNT_SCREEN" -> {
+
+                        }
                     }
                 },
                 containerColor = when (navBackStackEntry?.destination?.route) {
@@ -104,23 +107,6 @@ fun AppModalBottomSheet(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        //新增賬號
-                  /*      Button(onClick = {
-                            navigationToTopLevelDestination(ADD_ACCOUNT)
-                            scope.launch { sheetState.hide() }.invokeOnCompletion {
-                                if (!sheetState.isVisible) {
-                                    showBottomSheet.value = false
-                                }
-                            }
-
-                        }) {
-                            Icon(
-                                imageVector = ADD_ACCOUNT.selectedIcon,
-                                contentDescription = stringResource(id = R.string.add_account)
-                            )
-                            Spacer(modifier = Modifier.padding(6.dp))
-                            Text(text = stringResource(id = R.string.add_account))
-                        }*/
                         Spacer(modifier = Modifier.padding(6.dp))
                         //計劃金額
                         Button(onClick = {
@@ -156,6 +142,42 @@ fun AppModalBottomSheet(
                             Text(text = stringResource(id = R.string.account_transfer))
                         }
                     }
+                }
+                //TODO
+              /*  "TRANSACTION_SCREEN" -> {
+                    //Income
+                    Button(onClick = {
+                        navigationToTopLevelDestination(PLAN_AMOUNT)
+                        scope.launch { sheetState.hide() }.invokeOnCompletion {
+                            if (!sheetState.isVisible) {
+                                showBottomSheet.value = false
+                            }
+                        }
+                    }) {
+                        Icon(
+                            imageVector = PLAN_AMOUNT.selectedIcon,
+                            contentDescription = stringResource(id = R.string.plan_amount)
+                        )
+                        Spacer(modifier = Modifier.padding(6.dp))
+                        Text(text = stringResource(id = R.string.plan_amount))
+                    }
+                    Spacer(modifier = Modifier.padding(6.dp))
+                    //PayFor
+                    Button(onClick = {
+                        navigationToTopLevelDestination(ACCOUNT_TRANSFER)
+                        scope.launch { sheetState.hide() }.invokeOnCompletion {
+                            if (!sheetState.isVisible) {
+                                showBottomSheet.value = false
+                            }
+                        }
+                    }) {
+                        Icon(
+                            imageVector = ACCOUNT_TRANSFER.selectedIcon,
+                            contentDescription = stringResource(id = R.string.account_transfer)
+                        )
+                        Spacer(modifier = Modifier.padding(6.dp))
+                        Text(text = stringResource(id = R.string.account_transfer))
+                    }*/
                 }
             }
         }

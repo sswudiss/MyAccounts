@@ -16,7 +16,7 @@ import com.example.myaccounts.R
 object AppRoute {
     const val OVERVIEW = "OVERVIEW"
     const val TRANSACTION_SCREEN = "TRANSACTION_SCREEN" //交易詳情
-    const val ACCOUNT_SCREEN = "ACCOUNT_SCREEN"   //賬號屏幕.
+    const val ACCOUNT_SCREEN = "ACCOUNT_SCREEN"   //賬號屏幕
 
     const val PLAN_AMOUNT = "PLAN_AMOUNT"         //計劃金額
     const val ACCOUNT_TRANSFER = "ACCOUNT_TRANSFER"   //賬號轉移

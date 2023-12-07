@@ -5,12 +5,14 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 
 @Composable
@@ -29,7 +31,9 @@ fun AppBottomNavigationBarM3(
         // 用於消失動畫，預設在縮小時淡出
         exit = slideOutVertically(targetOffsetY = { it }),
         content = {
-            NavigationBar(modifier = Modifier.fillMaxWidth()) {
+            NavigationBar(
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 TOP_LEVEL_DESTINATIONS.forEach {
                     NavigationBarItem(
                         selected = selectedDestination == it.route,
@@ -40,7 +44,9 @@ fun AppBottomNavigationBarM3(
                                 contentDescription = stringResource(id = it.iconTextId)
                             )
                         },
-                        label = { Text(text = stringResource(id = it.iconTextId)) }  //在圖標下面顯示文字
+                        label = {
+                            Text(text = stringResource(id = it.iconTextId))
+                        }  //在圖標下面顯示文字
                     )
                 }
             }

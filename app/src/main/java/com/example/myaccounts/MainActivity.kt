@@ -23,7 +23,9 @@ import com.example.myaccounts.navigation.AppNavHost
 import com.example.myaccounts.navigation.AppNavigationActions
 import com.example.myaccounts.navigation.AppRoute
 import com.example.myaccounts.navigation.FabM3
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
