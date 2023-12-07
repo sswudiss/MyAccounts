@@ -17,7 +17,7 @@ import com.example.myaccounts.transaction.income.IncomeScreen
 import com.example.myaccounts.account.PlanAmountScreen
 import com.example.myaccounts.transaction.TransactionDetails
 import com.example.myaccounts.transaction.income.AddIncome
-import com.example.myaccounts.transaction.payfor.AddPayFor
+
 
 @Composable
 fun AppNavHost(
@@ -62,7 +62,7 @@ fun AppNavHost(
 
         // 新增支出
         composable(route = AppRoute.ADD_PAY_FOR) {
-            AddPayFor()
+//            AddPayFor()
         }
 
         // 新增賬號

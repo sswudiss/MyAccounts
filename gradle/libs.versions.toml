@@ -1,7 +1,6 @@
 [versions]
 agp = "8.3.0-alpha16"
-liveData = "1.5.4"
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -18,6 +17,7 @@ material3 = "1.1.2"
 room = "2.6.1"
 coroutines = "1.7.3"
 viewModelCompose = "2.6.2"
+liveData = "1.5.4"
 lifecycle = "2.6.2"
 
 [libraries]

@@ -16,8 +16,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.myaccounts.R
 import com.example.myaccounts.utils.AmountInput
-import com.example.myaccounts.utils.AppDatePicker
 
+/*
 @Composable
 fun AddPayFor() {
     var amountInput by rememberSaveable { mutableStateOf("") }
@@ -39,4 +39,4 @@ fun AddPayFor() {
             onValueChange = { amountInput = it }
         )
     }
-}
+}*/
