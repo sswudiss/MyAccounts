@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="home">主页</string>
-    <string name="account">账户</string>
     <string name="income">收入</string>
-    <string name="pay_for">支付</string>
+    <string name="pay_for">支出</string>
     <string name="app_name">MyAccounts</string>
     <string name="plan_amount">计划金额</string>
     <string name="account_transfer">账户转移</string>
     <string name="add_account">添加账户</string>
     <string name="overview">概览</string>
+    <string name="account_screen">账户</string>
+    <string name="transaction_screen">交易</string>
+    <string name="total_balance">总余额:</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.myaccounts.transaction
+package com.example.myaccounts.transaction_details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -29,24 +30,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.myaccounts.navigation.ADD_INCOME
-import com.example.myaccounts.navigation.AppRoute.TRANSACTION_DETAILS
+import com.example.myaccounts.navigation.AppDestination
+import com.example.myaccounts.navigation.Screen
 
-/**
- * Detail screen for a single account.
- * 詳細資訊畫面
- */
 
 @Composable
 fun TransactionDetails(
     navController: NavHostController,
     viewModel: TransactionDetailViewModel = hiltViewModel(),
     transactionId: Int
-
 ) {
     val context = LocalContext.current
     Column(
-        modifier = Modifier
+        modifier = androidx.compose.ui.Modifier
             .fillMaxSize()
             .padding(8.dp),
     ) {
@@ -78,6 +74,9 @@ fun TransactionDetails(
                 }) {
                     Icon(imageVector = Icons.Outlined.Delete, contentDescription = "Delete")
                 }
+                IconButton(onClick = { viewModel.onEvent(TransactionsDetailEvent.Share(context)) }) {
+                    Icon(imageVector = Icons.Outlined.Share, contentDescription = "Share")
+                }
             }
         }
 
@@ -90,6 +89,7 @@ fun TransactionDetails(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box {
+
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -103,8 +103,9 @@ fun TransactionDetails(
 
                     Column {
                         Text(
-                            text = "Title 標題",
+                            text = "Title",
                             color = Color.White.copy(0.7f),
+
                             )
                         viewModel.currTransaction.value.transaction?.let {
                             Text(
@@ -116,7 +117,7 @@ fun TransactionDetails(
                     Spacer(modifier = Modifier.height(16.dp))
                     Column {
                         Text(
-                            text = "Amount 金額",
+                            text = "Amount",
                             color = Color.White.copy(0.7f),
 
                             )
@@ -128,7 +129,7 @@ fun TransactionDetails(
                     Spacer(modifier = Modifier.height(16.dp))
                     Column {
                         Text(
-                            text = "Transaction Type 交易類型",
+                            text = "Transaction Type",
                             color = Color.White.copy(0.7f),
 
                             )
@@ -142,7 +143,7 @@ fun TransactionDetails(
                     Spacer(modifier = Modifier.height(16.dp))
                     Column {
                         Text(
-                            text = "Date 時間",
+                            text = "When",
                             color = Color.White.copy(0.7f),
 
                             )
@@ -156,7 +157,7 @@ fun TransactionDetails(
                     Spacer(modifier = Modifier.height(16.dp))
                     Column {
                         Text(
-                            text = "Note 筆記",
+                            text = "Note",
                             color = Color.White.copy(0.7f),
 
                             )
@@ -179,7 +180,7 @@ fun TransactionDetails(
                     horizontalArrangement = Arrangement.End
                 ) {
                     IconButton(onClick = {
-                        navController.navigate(ADD_INCOME.route + "/${transactionId}" + "/${TRANSACTION_DETAILS}")
+                        navController.navigate(Screen.AddEditTransaction.route + "/${transactionId}" + "/${Screen.TransactionDetails.route}")
                     }) {
                         Icon(
                             imageVector = Icons.Outlined.Edit,

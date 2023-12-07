@@ -76,15 +76,18 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
     //Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+
     //ROOM
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+//    implementation(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
     //協程
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
@@ -92,8 +95,10 @@ dependencies {
     //Compose-ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
     //LiveData
     implementation(libs.androidx.compose.runtime.livedata)
+
     //添加全套材質圖標
     implementation("androidx.compose.material:material-icons-extended")
 

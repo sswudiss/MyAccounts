@@ -35,7 +35,8 @@ fun TransactionCard(transaction: TransactionEntity, onClick: () -> Unit) {
             .clip(RoundedCornerShape(8.dp))
             .clickable { onClick() }
             .background(Color(0xFFD16C97))
-            .padding(16.dp),
+            .padding(16.dp)
+        ,
         horizontalArrangement = Arrangement.Center
     ) {
         Icon(
@@ -66,7 +67,7 @@ fun TransactionCard(transaction: TransactionEntity, onClick: () -> Unit) {
                     text = transaction.tags,
                     color = Color.White.copy(0.7f),
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis //使用省略號來指示文字已溢出
+                    overflow = TextOverflow.Ellipsis
                 )
 
             }

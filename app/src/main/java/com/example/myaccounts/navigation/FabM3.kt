@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import com.example.myaccounts.R
+import com.example.myaccounts.navigation.AppRoute.ACCOUNT_SCREEN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -52,11 +53,11 @@ fun FabM3(
                             showBottomSheet.value = true
                         }
 
-                        "INCOME_SCREEN" -> {
-                            navigationToTopLevelDestination(ADD_INCOME)
+                        "TRANSACTION_SCREEN" -> {
+                            Screen.TransactionDetails.route
                         }
 
-                        "PAY_FOR_SCREEN" -> navigationToTopLevelDestination(ADD_PAY_FOR)
+                        "ACCOUNT_SCREEN" -> navigationToTopLevelDestination(TOP_LEVEL_DESTINATIONS[2])
                     }
                 },
                 containerColor = when (navBackStackEntry?.destination?.route) {
@@ -104,7 +105,7 @@ fun AppModalBottomSheet(
                         verticalArrangement = Arrangement.Center
                     ) {
                         //新增賬號
-                        Button(onClick = {
+                  /*      Button(onClick = {
                             navigationToTopLevelDestination(ADD_ACCOUNT)
                             scope.launch { sheetState.hide() }.invokeOnCompletion {
                                 if (!sheetState.isVisible) {
@@ -119,7 +120,7 @@ fun AppModalBottomSheet(
                             )
                             Spacer(modifier = Modifier.padding(6.dp))
                             Text(text = stringResource(id = R.string.add_account))
-                        }
+                        }*/
                         Spacer(modifier = Modifier.padding(6.dp))
                         //計劃金額
                         Button(onClick = {

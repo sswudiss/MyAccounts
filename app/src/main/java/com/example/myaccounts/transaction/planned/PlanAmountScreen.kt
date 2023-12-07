@@ -1,4 +1,4 @@
-package com.example.myaccounts.account
+package com.example.myaccounts.transaction.planned
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

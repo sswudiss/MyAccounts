@@ -1,4 +1,4 @@
-package com.example.myaccounts.transaction
+package com.example.myaccounts.transaction_details
 
 import com.example.myaccounts.data.entity.TransactionEntity
 

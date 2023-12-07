@@ -1,9 +1,8 @@
-package com.example.myaccounts.data.entity
+package com.example.myaccounts.data
 
-import com.example.myaccounts.data.TransactionRepository
 import com.example.myaccounts.data.dao.TransactionDao
+import com.example.myaccounts.data.entity.TransactionEntity
 import kotlinx.coroutines.flow.Flow
-
 
 class TransactionRepositoryImpl(
     private val dao: TransactionDao,

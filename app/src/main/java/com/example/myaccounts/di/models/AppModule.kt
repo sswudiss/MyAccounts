@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.example.myaccounts.data.TransactionRepository
 import com.example.myaccounts.data.TransactionsDB
-import com.example.myaccounts.data.entity.TransactionRepositoryImpl
+import com.example.myaccounts.data.TransactionRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

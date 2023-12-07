@@ -1,5 +1,6 @@
-package com.example.myaccounts.transaction
+package com.example.myaccounts.transaction_details
 
+import android.content.Intent
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -9,6 +10,7 @@ import com.example.myaccounts.data.TransactionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class TransactionDetailViewModel @Inject constructor(
@@ -27,6 +29,7 @@ class TransactionDetailViewModel @Inject constructor(
                 )
             }
         }
+
     }
 
     fun onEvent(event: TransactionsDetailEvent) {
@@ -37,8 +40,28 @@ class TransactionDetailViewModel @Inject constructor(
                 viewModelScope.launch {
                     userDataRepository.deleteTransactionById(event.id)
                 }
+
             }
             is TransactionsDetailEvent.Edit -> {}
+            is TransactionsDetailEvent.Share -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        if (_currTransaction.value.transaction?.transactionType == "Expense") {
+                            "I paid $${_currTransaction.value.transaction?.amount} for ${_currTransaction.value.transaction!!.title}."
+                        } else {
+                            "I earned $${_currTransaction.value.transaction?.amount} from ${_currTransaction.value.transaction!!.title}."
+
+                        }
+                    )
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                event.context.startActivity(shareIntent)
+
+            }
         }
     }
 }
