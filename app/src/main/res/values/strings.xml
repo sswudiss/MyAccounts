@@ -10,4 +10,6 @@
     <string name="account_screen">ACCOUNT</string>
     <string name="transaction_screen">TRANSACTION</string>
     <string name="total_balance">Total Balance:</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="budget_amount">Budget Amount</string>
 </resources>

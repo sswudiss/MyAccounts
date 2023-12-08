@@ -13,18 +13,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,11 +42,11 @@ import com.example.myaccounts.navigation.Screen
 
 
 /**
- * account screen
+ *
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Transaction(
+fun Transactions(
     navController: NavHostController,
     viewModel: TransactionViewModel = hiltViewModel()
 
@@ -45,14 +54,12 @@ fun Transaction(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp),
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val transactionList by viewModel.transactions
-
         val options = listOf("All", "Expense", "Income")
 
-        Spacer(modifier = Modifier.height(32.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,7 +76,7 @@ fun Transaction(
                 },
                 modifier = Modifier.width(140.dp)
             ) {
-                TextField(
+                /*TextField(
                     readOnly = true,
                     value = viewModel.transactionType.value.selectedOption,
                     onValueChange = { },
@@ -79,7 +86,7 @@ fun Transaction(
                         )
                     },
                     shape = RoundedCornerShape(16.dp)
-                )
+                )*/
 
                 //..........................
                 ExposedDropdownMenu(
@@ -103,6 +110,34 @@ fun Transaction(
                     }
                 }
                 //..........................
+
+                var state by remember { mutableStateOf(false) }
+
+                Row(modifier = Modifier.selectableGroup()) {
+                    RadioButton(
+                        selected = !state, //是否選擇該單選按鈕
+                        onClick = { state = true },
+                        modifier = Modifier.semantics { contentDescription = "Option 1" },
+                        enabled = true
+                    )
+
+                    RadioButton(
+                        selected = state,
+                        onClick = { state = true },
+                        modifier = Modifier.semantics { contentDescription = "Option 2" },
+                        enabled = true
+                    )
+
+                    RadioButton(
+                        selected = state,
+                        onClick = { state = true },
+                        modifier = Modifier.semantics { contentDescription = "Option 3" },
+                        enabled = true
+                    )
+                }
+
+
+
             }
         }
 

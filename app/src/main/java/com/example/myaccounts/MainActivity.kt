@@ -64,29 +64,14 @@ fun MyApp() {
 
     // 動畫狀態設置
     when (navBackStackEntry?.destination?.route) {
-        "ADD_INCOME" -> {
-            bottomBarState.value = false
-            fabState.value = false
-        }
-
-        "ADD_PAY_FOR" -> {
-            bottomBarState.value = false
-            fabState.value = false
-        }
 
         "ADD_ACCOUNT" -> {
-            fabState.value = false
-        }
-
-        "PLAN_AMOUNT" -> {
-            fabState.value = false
+            bottomBarState.value = false
         }
 
         "ACCOUNT_TRANSFER" -> {
-            fabState.value = false
+            bottomBarState.value = false
         }
-
-
         else -> {
             bottomBarState.value = true
             topBarState.value = true

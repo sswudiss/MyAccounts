@@ -123,7 +123,7 @@ fun SummaryMiniCard(
         }
         Spacer(modifier = Modifier.width(8.dp))
 
-        Column() {
+        Column {
             Text(
                 text = heading,
                 color = Color.White.copy(0.7f),

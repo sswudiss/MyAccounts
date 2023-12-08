@@ -16,7 +16,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
-import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -30,19 +29,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.myaccounts.navigation.AppDestination
 import com.example.myaccounts.navigation.Screen
 
 
 @Composable
-fun TransactionDetails(
+fun EditTransaction(
     navController: NavHostController,
     viewModel: TransactionDetailViewModel = hiltViewModel(),
     transactionId: Int
 ) {
     val context = LocalContext.current
     Column(
-        modifier = androidx.compose.ui.Modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(8.dp),
     ) {
@@ -73,9 +71,6 @@ fun TransactionDetails(
                     )
                 }) {
                     Icon(imageVector = Icons.Outlined.Delete, contentDescription = "Delete")
-                }
-                IconButton(onClick = { viewModel.onEvent(TransactionsDetailEvent.Share(context)) }) {
-                    Icon(imageVector = Icons.Outlined.Share, contentDescription = "Share")
                 }
             }
         }
@@ -143,7 +138,7 @@ fun TransactionDetails(
                     Spacer(modifier = Modifier.height(16.dp))
                     Column {
                         Text(
-                            text = "When",
+                            text = "Date",
                             color = Color.White.copy(0.7f),
 
                             )
@@ -169,8 +164,6 @@ fun TransactionDetails(
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))
-
-
                 }
 
                 Row(
@@ -180,7 +173,7 @@ fun TransactionDetails(
                     horizontalArrangement = Arrangement.End
                 ) {
                     IconButton(onClick = {
-                        navController.navigate(Screen.AddEditTransaction.route + "/${transactionId}" + "/${Screen.TransactionDetails.route}")
+                        navController.navigate(Screen.AddTransaction.route + "/${transactionId}" + "/${Screen.TransactionDetails.route}")
                     }) {
                         Icon(
                             imageVector = Icons.Outlined.Edit,

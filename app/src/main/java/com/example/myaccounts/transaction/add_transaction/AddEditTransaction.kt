@@ -44,8 +44,6 @@ import androidx.navigation.NavHostController
 @Composable
 fun AddEditTransaction(
     navHostController: NavHostController,
-    transactionId:Int,
-    previousScreen:String,
     viewModel: AddEditTransactionViewModel = hiltViewModel()
 ) {
     BackHandler {
@@ -54,11 +52,10 @@ fun AddEditTransaction(
     val context = LocalContext.current
 
     Column(
-        modifier = androidx.compose.ui.Modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(8.dp),
     ) {
-
 
         Spacer(modifier = Modifier.height(32.dp))
         Row(
@@ -94,6 +91,7 @@ fun AddEditTransaction(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
                 TextField(
                     value = viewModel.title.value.text,
                     onValueChange = { viewModel.onEvent(AddEditTransactionEvent.EnteredTitle(it)) },
@@ -105,6 +103,7 @@ fun AddEditTransaction(
                         )
                     },
                     shape = RoundedCornerShape(9.dp),
+
                     keyboardOptions = KeyboardOptions.Default.copy(
                         imeAction = ImeAction.Next
                     ),
@@ -112,6 +111,7 @@ fun AddEditTransaction(
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
+
                 TextField(
                     value = viewModel.amount.value.text,
                     onValueChange = { viewModel.onEvent(AddEditTransactionEvent.EnteredAmount(it)) },
@@ -137,6 +137,7 @@ fun AddEditTransaction(
                     },
                     modifier = Modifier.width(280.dp)
                 ) {
+
                     TextField(
                         placeholder = {
                             Text(
@@ -152,11 +153,7 @@ fun AddEditTransaction(
                                 expanded = viewModel.transactionType.value.isExpanded
                             )
                         },
-                        colors = TextFieldDefaults.textFieldColors(
-                            cursorColor = Color.White,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent,
-                        ),
+
                         shape = RoundedCornerShape(16.dp)
                     )
                     ExposedDropdownMenu(
@@ -167,7 +164,7 @@ fun AddEditTransaction(
                     ) {
                         transactionTypes.forEach { selectionOption ->
                             DropdownMenuItem(
-                                text = { Text(text = selectionOption) },
+                                text= {Text(text = selectionOption)},
                                 onClick = {
                                     viewModel.onEvent(
                                         AddEditTransactionEvent.ChangeSelectedOption(
@@ -181,6 +178,7 @@ fun AddEditTransaction(
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
+
                 TextField(
                     value = viewModel.tags.value.text,
                     onValueChange = { viewModel.onEvent(AddEditTransactionEvent.EnteredTags(it)) },
@@ -192,17 +190,13 @@ fun AddEditTransaction(
                         )
                     },
                     shape = RoundedCornerShape(9.dp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        cursorColor = Color.White,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    ),
                     keyboardOptions = KeyboardOptions.Default.copy(
                         imeAction = ImeAction.Next
                     ),
                     singleLine = true
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+
                 TextField(
                     value = viewModel.note.value.text,
                     onValueChange = { viewModel.onEvent(AddEditTransactionEvent.EnteredNote(it)) },
@@ -214,11 +208,6 @@ fun AddEditTransaction(
                         )
                     },
                     shape = RoundedCornerShape(9.dp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        cursorColor = Color.White,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    ),
                     keyboardOptions = KeyboardOptions.Default.copy(
                         imeAction = ImeAction.Next
                     ),

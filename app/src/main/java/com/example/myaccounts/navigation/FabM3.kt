@@ -26,9 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavHostController
 import com.example.myaccounts.R
-import com.example.myaccounts.navigation.AppRoute.ACCOUNT_SCREEN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -54,12 +52,12 @@ fun FabM3(
                             showBottomSheet.value = true
                         }
 
-                        "TRANSACTION_SCREEN" -> {
-
+                        "TRANSACTION_DETAILS" -> {
+                            navigationToTopLevelDestination(ADD_TRANSACTION)
                         }
 
                         "ACCOUNT_SCREEN" -> {
-
+                            navigationToTopLevelDestination(ADD_ACCOUNT)
                         }
                     }
                 },
@@ -110,7 +108,7 @@ fun AppModalBottomSheet(
                         Spacer(modifier = Modifier.padding(6.dp))
                         //計劃金額
                         Button(onClick = {
-                            navigationToTopLevelDestination(PLAN_AMOUNT)
+                            navigationToTopLevelDestination(BUDGET)
                             scope.launch { sheetState.hide() }.invokeOnCompletion {
                                 if (!sheetState.isVisible) {
                                     showBottomSheet.value = false
@@ -118,11 +116,11 @@ fun AppModalBottomSheet(
                             }
                         }) {
                             Icon(
-                                imageVector = PLAN_AMOUNT.selectedIcon,
-                                contentDescription = stringResource(id = R.string.plan_amount)
+                                imageVector = BUDGET.selectedIcon,
+                                contentDescription = stringResource(id = R.string.budget_amount)
                             )
                             Spacer(modifier = Modifier.padding(6.dp))
-                            Text(text = stringResource(id = R.string.plan_amount))
+                            Text(text = stringResource(id = R.string.budget_amount))
                         }
                         Spacer(modifier = Modifier.padding(6.dp))
                         //賬號轉移
@@ -142,42 +140,6 @@ fun AppModalBottomSheet(
                             Text(text = stringResource(id = R.string.account_transfer))
                         }
                     }
-                }
-                //TODO
-              /*  "TRANSACTION_SCREEN" -> {
-                    //Income
-                    Button(onClick = {
-                        navigationToTopLevelDestination(PLAN_AMOUNT)
-                        scope.launch { sheetState.hide() }.invokeOnCompletion {
-                            if (!sheetState.isVisible) {
-                                showBottomSheet.value = false
-                            }
-                        }
-                    }) {
-                        Icon(
-                            imageVector = PLAN_AMOUNT.selectedIcon,
-                            contentDescription = stringResource(id = R.string.plan_amount)
-                        )
-                        Spacer(modifier = Modifier.padding(6.dp))
-                        Text(text = stringResource(id = R.string.plan_amount))
-                    }
-                    Spacer(modifier = Modifier.padding(6.dp))
-                    //PayFor
-                    Button(onClick = {
-                        navigationToTopLevelDestination(ACCOUNT_TRANSFER)
-                        scope.launch { sheetState.hide() }.invokeOnCompletion {
-                            if (!sheetState.isVisible) {
-                                showBottomSheet.value = false
-                            }
-                        }
-                    }) {
-                        Icon(
-                            imageVector = ACCOUNT_TRANSFER.selectedIcon,
-                            contentDescription = stringResource(id = R.string.account_transfer)
-                        )
-                        Spacer(modifier = Modifier.padding(6.dp))
-                        Text(text = stringResource(id = R.string.account_transfer))
-                    }*/
                 }
             }
         }

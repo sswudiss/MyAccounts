@@ -10,4 +10,6 @@
     <string name="account_screen">賬號</string>
     <string name="transaction_screen">交易</string>
     <string name="total_balance">總餘額:</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="budget_amount">Budget Amount</string>
 </resources>
